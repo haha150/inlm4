@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{currencyManager.onload}"/>
+    </f:metadata>
+    <h:head>
+        <title>Welcome to the exchanger</title>
+    </h:head>
+    <h:body>
+        <h1>Welcome to the exchanger</h1>
+
+        <h:form>
+            <h3>Exchange</h3>
+            <p>
+                <h:outputLabel for="exchangeAmount" value="From: "/>
+                <h:selectOneMenu value="#{currencyManager.fromCurrency}">
+                    <f:selectItems value="#{currencyManager.currencies}" var="c" 
+                                   itemLabel="#{c.currency}" itemValue="#{c.currency}" />
+                </h:selectOneMenu>
+                <h:outputLabel for="exchangeAmount" value=" To: "/>
+                <h:selectOneMenu value="#{currencyManager.toCurrency}">
+                    <f:selectItems value="#{currencyManager.currencies}" var="c" 
+                                   itemLabel="#{c.currency}" itemValue="#{c.currency}" />
+                </h:selectOneMenu>
+                <h:inputText id="exchangeAmount" value="#{currencyManager.exchangeAmount}"/>
+                <h:outputLabel for="amount" value="#{currencyManager.amount}"/>
+            </p>
+            <p>
+                <h:commandButton value="Exchange" action="#{currencyManager.convert}"/>
+            </p>
+            <hr/>
+        </h:form>
+
+    </h:body>
+</html>
+
